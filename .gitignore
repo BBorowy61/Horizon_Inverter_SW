@@ -8,3 +8,5 @@
 *.sbl
 # Build logs
 *.log
+# Workspaces
+*.wks

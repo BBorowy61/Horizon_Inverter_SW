@@ -1,0 +1,64 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectDir="C:\_faill\Solstice\17.07\Software\"
+ProjectType=Executable
+CPUFamily=TMS320C28XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="avg_fbk.c"
+Source="background.c"
+Source="board_test.c"
+Source="diagdata.c"
+Source="fault.c"
+Source="Flash2812_API_V210\lib\Flash2812_API_V210.lib"
+Source="flt_que.c"
+Source="functions.c"
+Source="handler_funcs.c"
+Source="hardware.c"
+Source="main.c"
+Source="mppt.c"
+Source="oper.c"
+Source="paramcalc.c"
+Source="paramtable.c"
+Source="pll.c"
+Source="prgmflash.c"
+Source="pwm_int.c"
+Source="receive.c"
+Source="regulator.c"
+Source="rtc.c"
+Source="sci.c"
+Source="simulate.c"
+Source="slow_task.c"
+Source="start.asm"
+Source="transmit.c"
+Source="utils.c"
+Source="main.cmd"
+
+["Compiler" Settings: "Debug"]
+Options=-g -ss -eaa28 -fr"$(Proj_dir)\Debug" -d"_DEBUG" -v28
+
+["Compiler" Settings: "Release"]
+Options=-o3 -fr"$(Proj_dir)\Release" -d"LARGE_MODEL" -ml -v28
+
+["Linker" Settings: "Debug"]
+Options=-a -farheap0 -f0FFFFh -heap0 -m".\Debug\PV Gen II 2812.map" -o".\Debug\main.out" -stack128 -s -w -x -l"rts2800.lib"
+
+["Linker" Settings: "Release"]
+Options=-c -m".\Release\PV Gen II 2812.map" -o".\Release\PV Gen II 2812.out" -w -x
+
+["main.cmd" Settings: "Debug"]
+LinkOrder=1
+
+["main.cmd" Settings: "Release"]
+LinkOrder=1
+
+
+[Tools]
+ToolDeleteList 

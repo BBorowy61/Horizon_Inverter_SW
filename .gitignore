@@ -1,0 +1,10 @@
+# Ignore files for TI Projects 
+# Generated asm files
+*.a28
+# Object files
+*.obj
+# Debug information
+*.paf2
+*.sbl
+# Build logs
+*.log

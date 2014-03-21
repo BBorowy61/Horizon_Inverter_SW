@@ -6,6 +6,8 @@
 # Debug information
 *.paf2
 *.sbl
+*.lkf
+*.CS_/
 # Build logs
 *.log
 # Workspaces

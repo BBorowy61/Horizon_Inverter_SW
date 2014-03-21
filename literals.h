@@ -364,7 +364,22 @@ extern void write_nvram(register unsigned far *src_pointer,register unsigned far
 
 
 /* advance controls flags */
-#define ADV_CON_UNUSED_0001		0x0001
+#define ADV_CON_DIS_5_HARM		0x0001
+#define ADV_CON_IGN_FANFLT		0x0002
+#define ADV_CON_SKIP_VMATCH		0x0004
+#define ADV_CON_UNUSED_0008		0x0008
+#define ADV_CON_UNUSED_0010		0x0010
+#define ADV_CON_UNUSED_0020		0x0020
+#define ADV_CON_UNUSED_0040		0x0040
+#define ADV_CON_UNUSED_0080		0x0080
+#define ADV_CON_UNUSED_0100		0x0100
+#define ADV_CON_UNUSED_0200		0x0200
+#define ADV_CON_UNUSED_0400		0x0400
+#define ADV_CON_UNUSED_0800		0x0800
+#define ADV_CON_UNUSED_1000		0x1000
+#define ADV_CON_UNUSED_2000		0x2000
+#define ADV_CON_UNUSED_4000		0x4000
+#define ADV_CON_UNUSED_8000		0x8000
 
 #define POWER_SOURCE_CURRENT	0
 #define POWER_SOURCE_VOLTAGE	1

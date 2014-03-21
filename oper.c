@@ -371,7 +371,7 @@ ext_outputs|=AC_CONTACTOR_OUTPUT_2;
     	case(STATE_MATCH_VOLTAGE):
 
 			
-			if(parameters.power_control_mode==PCM_DC_POWER) //for rectifier mode, no need to match the voltages. so force the condition to true all the time
+			if( (ADV_CON_SKIP_VMATCH & parameters.adv_control_configuration) || (parameters.power_control_mode==PCM_DC_POWER)) //for rectifier mode, no need to match the voltages. so force the condition to true all the time
 				temp2=(int)(0.01*PER_UNIT_F); 
 			else
 			{

@@ -58,7 +58,7 @@ void background (void)
 	register int temp;
 
 	#define MAJOR_VERSION_NUMBER	(17)
-	#define MINOR_VERSION_NUMBER	(8)
+	#define MINOR_VERSION_NUMBER	(9)
 
 	software_version=100*MAJOR_VERSION_NUMBER + MINOR_VERSION_NUMBER;
 

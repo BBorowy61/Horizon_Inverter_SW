@@ -626,7 +626,7 @@ v1 = fdbk_pu[IIA]>>parameters.testVar[1];
 	cos_angle=sin_table[(temp+NINETY_DEGREES) & ANGLE_MASK];
 	DQ_TO_ABC(temp,temp2,temp3,sin_angle,cos_angle,v_cmd_pu.d,v_cmd_pu.q)
 
-	if(!(0x1 & parameters.adv_control_configuration)) {
+	if(!(ADV_CON_DIS_5_HARM & parameters.adv_control_configuration)) {
 		temp  += harm5Vcmd[0];
 		temp2 += harm5Vcmd[1];
 		temp3 += harm5Vcmd[2];

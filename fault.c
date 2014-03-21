@@ -362,7 +362,7 @@ void find_faults(void)
 
 	}	
 
-	if(!(0x2 & parameters.adv_control_configuration)) {
+	if(!(ADV_CON_IGN_FANFLT & parameters.adv_control_configuration)) {
 
 		if(parameters.adjustable_spd_fan) {
 
@@ -500,7 +500,7 @@ void find_faults(void)
 	case(3):
 
 #if 0
-	if(!(0x2 & parameters.adv_control_configuration)) {
+	if(!(ADV_CON_IGN_FANFLT & parameters.adv_control_configuration)) {
 
 		if(parameters.adjustable_spd_fan) {
 

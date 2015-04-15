@@ -105,7 +105,8 @@ extern void uartTxCharPreIsr(void);
 struct ROMCHKSUM {unsigned code; unsigned text; unsigned text2; unsigned text3;};
 #pragma DATA_SECTION(rom_chksum,".chksum")
 //const far struct ROMCHKSUM rom_chksum={65535,65535,65535,65535};
-const far struct ROMCHKSUM rom_chksum={45677,65535,65535,37032};
+// PFP const far struct ROMCHKSUM rom_chksum={45677,65535,65535,37032};
+const far struct ROMCHKSUM rom_chksum={39710,65535,65535,37032};
 #pragma DATA_SECTION(chksum_adjustment,".rom_const")
 const far unsigned chksum_adjustment=0;
 

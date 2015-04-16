@@ -1,7 +1,7 @@
 ; Code Composer Project File, Version 2.0 (do not modify or remove this line)
 
 [Project Settings]
-ProjectDir="C:\_faill\Solstice\17.07\Software\"
+ProjectDir="C:\Users\ppeluso\Documents\Consulting\Makanai\Solstice\DPCB-7\Software\"
 ProjectType=Executable
 CPUFamily=TMS320C28XX
 Tool="Compiler"

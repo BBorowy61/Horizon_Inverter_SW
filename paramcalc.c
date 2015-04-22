@@ -447,7 +447,7 @@ void parameter_calc(void)
 				rating_code=2;
 		else if (kw_rated_param==100 &&  (v_rated==240 || v_rated==208 ))
 				rating_code=3;
-		else if (kw_rated_param==125 && v_rated==400)
+		else if (kw_rated_param==125 && (v_rated==400 || v_rated==480))
 				rating_code=4;
 		else if (kw_rated_param==400 && v_rated==265)
 				rating_code=5;

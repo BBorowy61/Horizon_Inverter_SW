@@ -68,7 +68,7 @@ extern struct SAVED_VARS saved_variables;
 extern struct CHKSUMS checksums;
 extern struct QUEUE_ENTRY display_fault;
 extern struct PWR_CURVE power_curve;
-extern int set_clock,calibrate_clock,fpga_version,software_version;
+extern int set_clock,calibrate_clock,fpga_version,software_version,build_number;
 extern int fault_queue_index,fan_spd_cmd_in,gate_test_param;
 extern int pv_curve_data_volts,pv_curve_data_power;
 extern int ext_input_faults,ext_output_faults,gating_faults,serial_comm_faults;
@@ -400,7 +400,7 @@ const far struct PARAM_ENTRY param_table[PARAM_MAX+1]={
 		&rated_inv_amps,					RD3|RD_ONLY,0,0,0,
 		&rated_dc_amps,						RD3|RD_ONLY,0,0,0,
 		&rated_dc_volts,					RD3|RD_ONLY,0,0,0,
-		DUMMY_VARIABLE
+		&build_number,						RD0|RD_ONLY,0,0,0,
 		&fpga_version,						RD0|RD_ONLY,0,0,0,
 
 // fault_queue (266-269)

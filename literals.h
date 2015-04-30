@@ -1,3 +1,9 @@
+/********************************************************************/
+/*  Program version                                                 */
+/********************************************************************/
+#define MAJOR_VERSION_NUMBER (17)
+#define MINOR_VERSION_NUMBER (9)
+#define BUILD_NUMBER         (3)
 
 /********************************************************************/
 /*	External functions												*/
@@ -367,8 +373,8 @@ extern void write_nvram(register unsigned far *src_pointer,register unsigned far
 #define ADV_CON_DIS_5_HARM		0x0001
 #define ADV_CON_IGN_FANFLT		0x0002
 #define ADV_CON_SKIP_VMATCH		0x0004
-#define ADV_CON_UNUSED_0008		0x0008
-#define ADV_CON_UNUSED_0010		0x0010
+#define ADV_CON_DIS_3_HARM      0x0008
+#define ADV_CON_DIS_LOW_POWER	0x0010
 #define ADV_CON_UNUSED_0020		0x0020
 #define ADV_CON_UNUSED_0040		0x0040
 #define ADV_CON_UNUSED_0080		0x0080

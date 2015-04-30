@@ -59,7 +59,7 @@ Solstice version
 unsigned hw_stack[STACK_SIZE];
 struct CHKSUMS checksums;
 int save_command;
-int fpga_version,software_version;
+int fpga_version,software_version,build_number;
 
 /********************************************************************/
 /*		2812 I/O structures (defined in 2812reg.h)					*/

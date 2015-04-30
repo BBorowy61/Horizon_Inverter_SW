@@ -658,9 +658,11 @@ v1 = fdbk_pu[IIA]>>parameters.testVar[1];
 /********************************************************************/
 /*		Subtract offset (3rd harmonic) from voltage commands		*/
 /********************************************************************/
-	v_cmd_pu.a+=temp;
-	v_cmd_pu.b+=temp;
-	v_cmd_pu.c+=temp;
+	if(!(ADV_CON_DIS_3_HARM & parameters.adv_control_configuration)) {
+		v_cmd_pu.a+=temp;
+		v_cmd_pu.b+=temp;
+		v_cmd_pu.c+=temp;
+	}
 
 /********************************************************************/
 /*		Set voltage command for gate test mode						*/

@@ -28,7 +28,7 @@
 /*		External variables											*/
 /********************************************************************/
 extern int global_flags,save_command;
-extern int fpga_version,software_version;
+extern int fpga_version,software_version,build_number;
 extern int status_flags,nvram_busy,operating_state,modbus_idle_timer;
 extern int faults[FAULT_WORDS];
 extern struct PARAMS parameters;
@@ -57,10 +57,8 @@ void background (void)
 {
 	register int temp;
 
-	#define MAJOR_VERSION_NUMBER	(17)
-	#define MINOR_VERSION_NUMBER	(9)
-
 	software_version=100*MAJOR_VERSION_NUMBER + MINOR_VERSION_NUMBER;
+	build_number=BUILD_NUMBER;
 
 	while(1)
 	{   

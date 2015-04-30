@@ -168,7 +168,8 @@ register int temp;
 	temp=GENERATING_OUTPUT;
 	if(operating_state==STATE_RUN)
 	{
-		if(parameters.power_control_mode!=PCM_DC_POWER) //no need to check the low power or low current faults during Rectifier mode
+		if( (parameters.power_control_mode!=PCM_DC_POWER) //no need to check the low power or low current faults during Rectifier mode
+			&& (!(ADV_CON_DIS_LOW_POWER & parameters.adv_control_configuration)))
 		{
 			if (output_power.kw > parameters.low_power_trip_pct*PERCENT_TO_PU)
 			{

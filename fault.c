@@ -406,7 +406,8 @@ void find_faults(void)
 	case(0):
 	if (ext_inputs&ESTOP_INPUT)
 	{										// estop pulled out
-		CLEAR_FAULT(ESTOP_FLT)
+	// PFP Test shutdown trigger
+	// CLEAR_FAULT(ESTOP_FLT)
 		
 		/* digital fuse fault only on grounded systems */
 		if (parameters.gnd_config!=FLOATING_GND)	{

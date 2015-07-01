@@ -183,9 +183,12 @@ void operating_sequence(void)
 /********************************************************************/
 /*		estop reset													*/
 /********************************************************************/
-    if (((ext_inputs & ESTOP_INPUT)==0) &&
-    	(operating_state!=0) && (operating_state!=STATE_BOARD_TEST))
+	// PFP Test shutdown trigger
+    if (((ext_inputs & ESTOP_INPUT)==0 || (FAULT_BIT(ESTOP_FLT))) &&
+    	(operating_state!=0) && (operating_state!=STATE_BOARD_TEST)) {
 		NEW_STATE(STATE_SHUTDOWN)
+		SET_FAULT(ESTOP_FLT)
+	}
 
     if(parameters.estop_reset)
     {

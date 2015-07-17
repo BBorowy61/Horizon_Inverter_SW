@@ -314,6 +314,8 @@ void operating_sequence(void)
 			if (status_flags & STATUS_READY) 
 			{
 	   			ext_outputs|=precharge_output;
+				if(ADV_CON_QCLOSE_DC_CON & parameters.adv_control_configuration)
+						ext_outputs|=DC_CONTACTOR_OUTPUT;
 
 /* special for Solstice 500kW, UL, with transformer */
 if(v_fdbk_config!=1 && parameters.inverter_type==NA) {

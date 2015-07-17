@@ -114,6 +114,7 @@ int a2d_offset_counts,a2d_gain_q12;
 unsigned powerup_timer_10ms;
 unsigned utemp,fan_tach_bit[2],fan_tach_bit_mask[2];
 int fan_fault_bit[2],fan_timer[2],fan_reset_count[2];
+int enable_uv_tests;
 
 /********************************************************************/
 /*		External variables											*/
@@ -194,6 +195,13 @@ void find_faults(void)
 			temp&=~ac_contactor_input;
 	}
 	ext_inputs=temp;
+
+	// PFP enable dc uv faults formerly controlled by DC_CONTACTOR_OUTPUT status
+	enable_uv_tests = (ext_outputs & DC_CONTACTOR_OUTPUT);
+	if(ADV_CON_QCLOSE_DC_CON & parameters.adv_control_configuration) { // DC Con closes early
+			if(operating_state <= STATE_MATCH_VOLTAGE)
+					enable_uv_tests = 0;
+	}
 
 /********************************************************************/
 /* Check fast faults at 1 ms intervals 								*/
@@ -316,14 +324,14 @@ void find_faults(void)
 /********************************************************************/
 /* DC input Under Voltage */
 /********************************************************************/
-		FLT_TMR_LATCHING(((fdbk_avg[VDCIN]<flts.dcin_uv.trip)&&(ext_outputs & DC_CONTACTOR_OUTPUT)),\
+		FLT_TMR_LATCHING(((fdbk_avg[VDCIN]<flts.dcin_uv.trip)&&(enable_uv_tests)),\
 							flts.dcin_uv,DCIN_UV_FLT,SET_FLT_STS)
 
 /********************************************************************/
 /* DC link instantaneous under voltage 								*/
 /********************************************************************/
 		FLT_TMR_LATCHING((fdbk_pu[VDC]<flts.dc_uv_inst.trip)&&(status_flags&STATUS_RUN)&&\
-			(ext_outputs & DC_CONTACTOR_OUTPUT),flts.dc_uv_inst,DC_UV_INST_FLT,SET_FLT_STS)
+			(enable_uv_tests),flts.dc_uv_inst,DC_UV_INST_FLT,SET_FLT_STS)
 
 /********************************************************************/
 /* DC link Under Voltage */

@@ -750,6 +750,17 @@ v1 = fdbk_pu[IIA]>>parameters.testVar[1];
 		v1 = (fdbk_pu[VDCIN]>>2);
 		v2 = (int)(vdc_int_term>>13);
 	}
+	else if(debugIndex==16) {
+		v0 = (i_inv_pu.d<<2);
+		v1 = (i_inv_pu.q<<2);
+		v2 = (fdbk_pu[ID]<<2);
+	}
+	else if(debugIndex==17) {
+		v0 = (i_inv_pu.d<<2);
+		v1 = (fdbk_pu[ID]<<2);
+		v2 = (fdbk_pu[ID]<<2);
+	}
+
 
 	d0 = v0 + 0x1ff;
 	d1 = v1 + 0x1ff;

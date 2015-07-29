@@ -75,7 +75,7 @@ extern int faults[FAULT_WORDS];
 extern struct DQ i_cmd_in;
 extern struct PARAMS parameters;
 extern struct FLTS flts;
-
+extern struct RTC_PACKED display_time;
 extern int fdbk_raw[],kwh_index;
 extern int gnd_impedance;
 extern int a2d_offset_counts,k_fdbk_q15[];
@@ -187,6 +187,15 @@ void regulators (void)
 /*		ac power calculation in fbk_avg module						*/
 /********************************************************************/
 	ABC_TO_DQ(fdbk_pu[ILA],fdbk_pu[ILB],fdbk_pu[ILC],line_angle,sin_angle,cos_angle,temp2,temp3,fdbk_pu[ID],fdbk_pu[IQ])
+// PFP Add a 0.02pu disturbance in to the line current feedback on request
+	if(ADV_CON_PTRB_LINE_ID & parameters.adv_control_configuration	) {
+			if( (display_time.second_hundredth / 100) & 0x0001) {
+				   fdbk_pu[ID] += 20;
+				   if(fdbk_pu[ID] > PER_UNIT)
+					   fdbk_pu[ID] = PER_UNIT;
+			}
+	}
+//PFP
 	MAGNITUDE(fdbk_pu[IL],fdbk_pu[ID],fdbk_pu[IQ],0)
 
 /********************************************************************/
@@ -211,6 +220,15 @@ void regulators (void)
 	i_inv_pu.b=fdbk_pu[IIB]+fdbk_pu[IIB2];
 	i_inv_pu.c=fdbk_pu[IIC]+fdbk_pu[IIC2];
 	ABC_TO_DQ(i_inv_pu.a,i_inv_pu.b,i_inv_pu.c,temp,sin_angle,cos_angle,temp2,temp3,comp.d,comp.q)
+// PFP Add a 0.02pu disturbance in to the inverter current feedback on request
+	if(ADV_CON_PTRB_INV_ID & parameters.adv_control_configuration	) {
+			if( (display_time.second_hundredth / 100) & 0x0001) {
+				   comp.d += 20;
+				   if(comp.d > PER_UNIT)
+						   comp.d = PER_UNIT;
+			}
+	}
+//PFP
 
 	if ((status_flags & STATUS_SIMULATE)==0)
 	{

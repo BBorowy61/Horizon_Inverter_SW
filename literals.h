@@ -3,7 +3,7 @@
 /********************************************************************/
 #define MAJOR_VERSION_NUMBER (17)
 #define MINOR_VERSION_NUMBER (9)
-#define BUILD_NUMBER         (8)
+#define BUILD_NUMBER         (9)
 
 /********************************************************************/
 /*	External functions												*/
@@ -376,8 +376,8 @@ extern void write_nvram(register unsigned far *src_pointer,register unsigned far
 #define ADV_CON_DIS_3_HARM      0x0008
 #define ADV_CON_DIS_LOW_POWER	0x0010
 #define ADV_CON_QCLOSE_DC_CON	0x0020
-#define ADV_CON_UNUSED_0040		0x0040
-#define ADV_CON_UNUSED_0080		0x0080
+#define ADV_CON_PTRB_LINE_ID	0x0040
+#define ADV_CON_PTRB_INV_ID     0x0080
 #define ADV_CON_UNUSED_0100		0x0100
 #define ADV_CON_UNUSED_0200		0x0200
 #define ADV_CON_UNUSED_0400		0x0400

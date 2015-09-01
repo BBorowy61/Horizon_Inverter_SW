@@ -270,7 +270,7 @@ int filler414;
 int power_source;
 int k_anti_island;
 int mppt_interval_6sec;
-int filler118;
+int inhibit_flt_inductor;
 int kwh_index;
 
 /********************************************************************/

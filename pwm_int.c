@@ -412,6 +412,11 @@ interrupt void pwm_isr (void)
 			PF2.GPASET = AC_CONTACTOR_OUTPUT_2;
 		PF2.GPACLEAR=DIO_18_GPA|DIO_19_GPA|DIO_20_GPA;
 	}
+	// PFP set fault inductor inhibit
+	if(parameters.inhibit_flt_inductor)
+		fpga_outputs |= INHIBIT_FAULT_INDUCTOR_TRIP;
+	else
+		fpga_outputs &= ~(INHIBIT_FAULT_INDUCTOR_TRIP);
 
 	FPGA_OUTPUT=fpga_outputs;
 

@@ -202,7 +202,8 @@ Solstice version
 		&parameters.power_source,						RD3|WR3,0,0,1,
 		&parameters.k_anti_island,						RD3|WR3,4,0,20,
 		&parameters.mppt_interval_6sec,					RD3|WR3,50,10,90,
-		DUMMY_VARIABLE
+		// PFP 
+		&parameters.inhibit_flt_inductor,				RD3|WR3,0,0,3600,
 		&kwh_index,										RD3|WR3,0,0,31,
 
 // mppt (420-429)

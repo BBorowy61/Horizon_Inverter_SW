@@ -288,7 +288,7 @@ if(parameters.testVar[0]==499){
 				temp=HIGH(vdc_ref_q16);		// from vdc_cmd_pu		
 				
 				if(parameters.power_control_mode==PCM_DC_POWER) {
-					reg_max = (long)(0.05*PER_UNIT_F) << 16;
+					reg_max = (long)maximum_d_q16; //  switch to param (long)(0.05*PER_UNIT_F) << 16;
 					reg_min = -(long)maximum_d_q16;				
 				}
 				else {

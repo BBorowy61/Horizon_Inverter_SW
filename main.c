@@ -50,7 +50,7 @@ Solstice version
 #include "struct.h"
 #include "io_def.h"
 #include "faults.h"
-#include "fpga_1309.h"
+#include "fpga_1310.h"
 
 /********************************************************************/
 /*		Global variables											*/

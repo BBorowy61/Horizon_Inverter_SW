@@ -195,10 +195,10 @@ Solstice version
 
 // dc input (410-419)
 		&parameters.vdcin_threshold,					RD3|WR3,550,0,1000,
-		DUMMY_VARIABLE
+		&parameters.kp_ac_volt_reg,						RD3|WR3,5000,0,7999,
 		&parameters.vdcin_delay_6sec,					RD3|WR3,300,0,500,
 		&parameters.precharge_volts_min,				RD3|WR3,320,0,1000,
-		DUMMY_VARIABLE
+		&parameters.ki_ac_volt_reg,						RD3|WR3,125,0,7999,
 		&parameters.power_source,						RD3|WR3,0,0,1,
 		&parameters.k_anti_island,						RD3|WR3,4,0,20,
 		&parameters.mppt_interval_6sec,					RD3|WR3,50,10,90,

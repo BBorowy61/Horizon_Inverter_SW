@@ -1,4 +1,12 @@
 # Ignore files for TI Projects 
+# Backup files
+*~
+# Archives
+*.zip
+# hex files for programming
+*.hex
+# Map files
+*.map
 # Generated asm files
 *.a28
 # Object files

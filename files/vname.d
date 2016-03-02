@@ -250,11 +250,13 @@ junk
 k_anti_island
 k_isl
 k_voltffd
+ki_ac_volt_reg
 ki_dc_volt_reg
 ki_inv_cur_reg
 ki_line_cur_reg
 ki_overtemp_reg
 ki_temp_reg
+kp_ac_volt_reg
 kp_dc_volt_reg
 kp_inv_cur_reg
 kp_line_cur_reg

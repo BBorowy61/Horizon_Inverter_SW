@@ -263,10 +263,10 @@ int ki_overtemp_reg;
 /*		PV settings (410-419) [110-119]								*/
 /********************************************************************/
 int vdcin_threshold;
-int filler111;
+int kp_ac_volt_reg;
 int vdcin_delay_6sec;
 int precharge_volts_min;
-int filler414;
+int ki_ac_volt_reg;
 int power_source;
 int k_anti_island;
 int mppt_interval_6sec;

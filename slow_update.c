@@ -3,13 +3,13 @@
 /*		Parameter Slow Update function								*/
 /*		updates one or two parameters (more or less) each call		*/
 /********************************************************************/
-extern int vac_cmd_pu;
+extern int vac_cmd_pu, kp_vac_q12, ki_vac_q12;
 
 void slow_param_update(void)
 {
 	register int temp1,temp2;
 
-	if (update_case > 60)
+	if (update_case > 61)
 		update_case=0;
 	switch (update_case++)
 	{
@@ -465,7 +465,18 @@ void slow_param_update(void)
 	fast_ramp_pu_q16=(long)(65536/(5*PWR_CURVE_SIZE*CYCLES_PER_SAMPLE))*rated_Hz;
 	break;
 
+/********************************************************************/
+/*	Voltage regulator gains											*/
+/********************************************************************/
 	case(60):
+	LIMIT_MAX_MIN(parameters.kp_ac_volt_reg,7999,0)
+	kp_vac_q12=parameters.kp_ac_volt_reg*(int)(4096.0/1000.0);
+	LIMIT_MAX_MIN(parameters.ki_ac_volt_reg,7999,0)
+	temp1=MULQ(12,parameters.ki_ac_volt_reg,(int)(4096.0*PWM_HZ_NOMINAL/1000.0));
+	ki_vac_q12=div_q12(temp1,pwm_Hz);
+	break;
+
+	case(61):
 	if (!(status_flags&STATUS_INITIALIZED))
 		status_flags|=STATUS_INITIALIZED;
 	break;

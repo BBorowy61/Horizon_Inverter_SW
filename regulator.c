@@ -41,6 +41,10 @@ long vdc_ref_q16;
 int ki_vdc_q12,kp_vdc_q12,ki_inv_q12,kp_inv_q12,kp_line_q12,ki_line_q12;
 int vdc_cmd_pu,k_anti_island_q12,transformer_shift;
 int cos_angle,sin_angle;
+//PFP PCM_AC_VOLTAGE
+long vac_ref_q16;
+int vac_cmd_pu, vac_error_pu, kp_vac_q12, ki_vac_q12;
+//PFP PCM_AC_VOLTAGE
 
 /********************************************************************/
 /*		Local variables												*/
@@ -61,6 +65,9 @@ long maximum_d_q16,maximum_q_q16;
 long ramped_i_ref_d_q16,ramped_i_ref_q_q16;
 long reg_max,reg_min;
 int vdcTarget;
+//PFP PCM_AC_VOLTAGE
+long vac_int_term;
+//PFP PCM_AC_VOLTAGE
 
 /********************************************************************/
 /*		External variables											*/
@@ -285,9 +292,7 @@ if(parameters.testVar[0]==499){
 			}
 			else if(parameters.power_control_mode>=PCM_MPPT) {
 
-				temp=HIGH(vdc_ref_q16);		// from vdc_cmd_pu		
-				
-				if(parameters.power_control_mode==PCM_DC_POWER) {
+				if(parameters.power_control_mode==PCM_DC_POWER || parameters.power_control_mode==PCM_AC_VOLTAGE) {
 					reg_max = (long)maximum_d_q16; //  switch to param (long)(0.05*PER_UNIT_F) << 16;
 					reg_min = -(long)maximum_d_q16;				
 				}
@@ -296,8 +301,17 @@ if(parameters.testVar[0]==499){
 					reg_min = (long)(-0.05*PER_UNIT_F)<<16;	
 				}
 				
-				PI_REG_PF(fdbk_pu[VDC],temp,vdc_error_pu,vdc_int_term,
-					i_ref_q16.d,((long)kp_vdc_q12<<4),((long)ki_vdc_q12<<4),reg_max,reg_min);
+				if(parameters.power_control_mode==PCM_AC_VOLTAGE) {
+					temp= vac_cmd_pu;		
+					PI_REG_PF(fdbk_pu[VL],temp,vac_error_pu,vac_int_term,
+						i_ref_q16.d,((long)kp_vac_q12<<4),((long)ki_vac_q12<<4),reg_max,reg_min);
+				}
+				else
+				{
+					temp=HIGH(vdc_ref_q16);		// from vdc_cmd_pu		
+					PI_REG_PF(fdbk_pu[VDC],temp,vdc_error_pu,vdc_int_term,
+						i_ref_q16.d,((long)kp_vdc_q12<<4),((long)ki_vdc_q12<<4),reg_max,reg_min);
+				}
 			}
 
 			/* fixed, user specified reactive power */

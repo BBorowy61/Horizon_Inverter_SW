@@ -219,9 +219,9 @@ Solstice version
 		&saved_variables.mwh_total,						RD3|WR3,0,0,9999,
 
 // ac control (430-439)
-		&parameters.power_control_mode,					RD3|WR3,3,0,4,
-		&parameters.real_power_cmd_pct,					RD3|WR3,100,0,110,
-		&parameters.real_current_cmd_pct,				RD3|WR3,0,0,110,
+		&parameters.power_control_mode,					RD3|WR3,3,0,5,
+		&parameters.real_power_cmd_pct,					RD3|WR3,100,-110,110,
+		&parameters.real_current_cmd_pct,				RD3|WR3,0,-110,110,
 		&pc_cmd,										RD3|WR3,0,0,9,
 		&parameters.reactive_power_cmd_pct,				RD3|WR3,0,-60,60,
 		&parameters.reactive_current_cmd_pct,			RD3|WR3,0,-60,60,

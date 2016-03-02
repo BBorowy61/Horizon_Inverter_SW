@@ -104,7 +104,7 @@ extern struct PARAMS parameters;
 void phase_lock_loop (void)
 {
 	register int temp1,temp2;
-
+	int vac_mode;
 /********************************************************************/
 /*		Initialize pll gains										*/
 /********************************************************************/
@@ -124,6 +124,7 @@ void phase_lock_loop (void)
 /*		Calculate new PLL and line voltage angles					*/
 /*		scaling is 65536^2 = 360 degrees so masking not required	*/
 /********************************************************************/
+	vac_mode = parameters.power_control_mode == PCM_AC_VOLTAGE;
 	temp1=pll_output_angle;
 	if (status_flags & STATUS_RVS)
 	{
@@ -170,7 +171,7 @@ void phase_lock_loop (void)
 /********************************************************************/
 /*		Determine PLL enable flag									*/
 /********************************************************************/
-	if ((fdbk_avg[VL] < pll_enable.trip)||
+	if (((fdbk_avg[VL] < pll_enable.trip) && (!vac_mode)) ||
 		(status_flags & STATUS_GATE_TEST)||
 		((status_flags & STATUS_OPEN_CCT_TEST)&&(ext_outputs & AC_CONTACTOR_OUTPUT)))
 	{
@@ -233,8 +234,14 @@ void phase_lock_loop (void)
 /********************************************************************/
 /*		Calculate and filter line frequency							*/
 /********************************************************************/
-		line_freq_long+=(((long)(pll_input_angle-pll_input_angle_old)<<16)-line_freq_long)>>FILTER_SHIFT;
-		
+		if(!vac_mode) {
+			line_freq_long+=(((long)(pll_input_angle-pll_input_angle_old)<<16)-line_freq_long)>>FILTER_SHIFT;
+		}
+		else {
+			line_freq_long=line_freq_rated;
+			freq_error_long=0;
+			pll_input_angle = pll_output_angle;
+		}
 /********************************************************************/
 /*		Determine phase rotation if not running						*/
 /********************************************************************/

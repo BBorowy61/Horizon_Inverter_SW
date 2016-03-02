@@ -1,9 +1,9 @@
 /********************************************************************/
 /*  Program version                                                 */
 /********************************************************************/
-#define MAJOR_VERSION_NUMBER (17)
-#define MINOR_VERSION_NUMBER (9)
-#define BUILD_NUMBER         (14)
+#define MAJOR_VERSION_NUMBER (18)
+#define MINOR_VERSION_NUMBER (0)
+#define BUILD_NUMBER         (0)
 
 
 /********************************************************************/
@@ -234,6 +234,7 @@ extern void write_nvram(register unsigned far *src_pointer,register unsigned far
 #define PCM_MPPT		2
 #define PCM_CONST_VDC	3
 #define PCM_DC_POWER	4
+#define PCM_AC_VOLTAGE  5
 
 /********************************************************************/
 /*	Define serial communication literals							*/

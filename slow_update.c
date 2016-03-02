@@ -3,6 +3,8 @@
 /*		Parameter Slow Update function								*/
 /*		updates one or two parameters (more or less) each call		*/
 /********************************************************************/
+extern int vac_cmd_pu;
+
 void slow_param_update(void)
 {
 	register int temp1,temp2;
@@ -179,13 +181,14 @@ void slow_param_update(void)
 	break;
 
 /********************************************************************/
-/*	line instantaneous voltage faults								*/
+/*	line instantaneous voltage faults and line voltage command		*/
 /********************************************************************/
 	case(26):
 	PCT_TRIP_TO_PU(line_overvolt_trip_inst_pct,VLA,line_ov_inst,0)
 	flts.line_ov_inst.delay=parameters.line_overvolt_delay_inst_ms*5;
 	PCT_TRIP_TO_PU(line_undervolt_trip_inst_pct,VLA,line_uv_inst,0)
 	flts.line_uv_inst.delay=parameters.line_undervolt_delay_inst;
+	vac_cmd_pu = 100 * PERCENT_TO_PU;
 	break;
 
 /********************************************************************/

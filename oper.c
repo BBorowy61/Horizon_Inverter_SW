@@ -375,13 +375,15 @@ ext_outputs|=AC_CONTACTOR_OUTPUT_2;
 /********************************************************************/
     	case(STATE_MATCH_VOLTAGE):
 
-			
-			if( (ADV_CON_SKIP_VMATCH & parameters.adv_control_configuration) || (parameters.power_control_mode==PCM_DC_POWER)) //for rectifier mode, no need to match the voltages. so force the condition to true all the time
+			//for rectifier and vac modes, no need to match the voltages. so force the condition to true all the time
+			if( (ADV_CON_SKIP_VMATCH & parameters.adv_control_configuration) || 
+				(parameters.power_control_mode==PCM_DC_POWER) ||
+				(parameters.power_control_mode==PCM_AC_VOLTAGE) ) 
 				temp2=(int)(0.01*PER_UNIT_F); 
 			else
 			{
 				temp2=fdbk_pu[VDC]-fdbk_pu[VDCIN];
-/*???*/				vdc_cmd_pu=fdbk_pu[VDCIN]+(int)(0.03*PER_UNIT_F);
+				vdc_cmd_pu=fdbk_pu[VDCIN]+(int)(0.03*PER_UNIT_F);
 			}
 		
 
@@ -407,7 +409,7 @@ ext_outputs|=AC_CONTACTOR_OUTPUT_2;
 				temp=DC_CONTACTOR_INPUT;
 
 				/* if DC POWER mode - start switching now */
-				if(parameters.power_control_mode==PCM_DC_POWER) {
+				if(parameters.power_control_mode==PCM_DC_POWER || parameters.power_control_mode==PCM_AC_VOLTAGE) {
 	    			status_flags|=STATUS_RUN;
 				}
 				

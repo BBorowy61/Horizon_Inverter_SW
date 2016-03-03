@@ -173,7 +173,7 @@ void regulators (void)
 /********************************************************************/
 /*	Line undervoltage instantaneous fault  							*/
 /********************************************************************/
-	FLT_TMR_LATCHING((fdbk_pu[VL]<flts.line_uv_inst.trip)&&(status_flags&STATUS_PLL_ENABLED),
+	FLT_TMR_LATCHING((fdbk_pu[VL]<flts.line_uv_inst.trip)&&(status_flags&STATUS_PLL_ENABLED)&&(parameters.power_control_mode!=PCM_AC_VOLTAGE),
 						flts.line_uv_inst,LINE_UV_FLT_FAST,1)
 
 /********************************************************************/
@@ -302,7 +302,7 @@ if(parameters.testVar[0]==499){
 				}
 				
 				if(parameters.power_control_mode==PCM_AC_VOLTAGE) {
-					temp= vac_cmd_pu;		
+					temp = vac_cmd_pu;		
 					PI_REG_PF(fdbk_pu[VL],temp,vac_error_pu,vac_int_term,
 						i_ref_q16.d,((long)kp_vac_q12<<4),((long)ki_vac_q12<<4),reg_max,reg_min);
 				}

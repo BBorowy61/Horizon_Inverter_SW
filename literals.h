@@ -3,7 +3,7 @@
 /********************************************************************/
 #define MAJOR_VERSION_NUMBER (18)
 #define MINOR_VERSION_NUMBER (0)
-#define BUILD_NUMBER         (1)
+#define BUILD_NUMBER         (2)
 
 
 /********************************************************************/

@@ -3,7 +3,7 @@
 /*		Parameter Slow Update function								*/
 /*		updates one or two parameters (more or less) each call		*/
 /********************************************************************/
-extern int vac_cmd_pu, kp_vac_q12, ki_vac_q12;
+extern int vac_cmd_pu, ac_volts_to_pu_q12, kp_vac_q12, ki_vac_q12;
 
 void slow_param_update(void)
 {
@@ -188,7 +188,7 @@ void slow_param_update(void)
 	flts.line_ov_inst.delay=parameters.line_overvolt_delay_inst_ms*5;
 	PCT_TRIP_TO_PU(line_undervolt_trip_inst_pct,VLA,line_uv_inst,0)
 	flts.line_uv_inst.delay=parameters.line_undervolt_delay_inst;
-	vac_cmd_pu = 100 * PERCENT_TO_PU;
+	vac_cmd_pu = MULQ_RND(12,v_rated,ac_volts_to_pu_q12);
 	break;
 
 /********************************************************************/

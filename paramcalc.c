@@ -84,7 +84,7 @@ int number_strings,i_string_rated_q4,modbus_access_level;
 /********************************************************************/
 /*		Local variables												*/
 /********************************************************************/
-int rating_code,dc_volts_to_pu_q12,modbus_access_code;
+int rating_code,dc_volts_to_pu_q12,ac_volts_to_pu_q12,modbus_access_code;
 int update_case,channel,gate_test_param;
 int kva_rated,l_pu;
 int ac_voltage_fdbk_ratio,dc_voltage_fdbk_ratio;
@@ -405,6 +405,7 @@ void parameter_calc(void)
 		pu_to_inv_volts_q12=MULQ_RND(12,rated_inv_volts,DECIMAL_TO_PU_Q12);		
 		pu_to_dc_volts_q12=MULQ_RND(12,rated_dc_volts,DECIMAL_TO_PU_Q12);
 		dc_volts_to_pu_q12=div_q12(PER_UNIT,rated_dc_volts);
+		ac_volts_to_pu_q12=div_q12(PER_UNIT,parameters.v_line_rated);
 	
 /********************************************************************/
 /*	Calculate rated line current									*/

@@ -31,6 +31,7 @@ apparent_power_avg
 auto_reset_interval
 auto_reset_lockout_time
 auto_reset_max_attempts
+build_number
 calibrate_clock
 calibrate_fdbk
 channel_1
@@ -42,7 +43,6 @@ channel_6
 channel_7
 channel_8
 close_selected_output
-comm_state
 current_difference_delay
 current_difference_trip
 current_unbalance_delay
@@ -371,6 +371,7 @@ reactive_power_avg
 reactive_power_cmd
 reactive_power_control_mode
 reactive_power_rate
+ready_dropped_mask
 real_current_cmd
 real_power_cmd
 real_power_rate
@@ -400,6 +401,7 @@ share_contactor
 spi_slave_id
 status
 stop_code
+stop_entry_count
 string_amps_1
 string_amps_10
 string_amps_11

@@ -792,7 +792,11 @@ v1 = fdbk_pu[IIA]>>parameters.testVar[1];
 		v1 = (fdbk_pu[ID]<<2);
 		v2 = (fdbk_pu[ID]<<2);
 	}
-
+	else if(debugIndex==18) {
+		v0 = pll_output_angle >> 7;
+		v1 = fdbk_pu[VL];
+		v2 = vac_cmd_pu;
+	}
 
 	d0 = v0 + 0x1ff;
 	d1 = v1 + 0x1ff;

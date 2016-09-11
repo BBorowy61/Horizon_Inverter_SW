@@ -1,0 +1,29 @@
+HMI / PCSOPS mods needed
+| Added +/- limits for currrent and power.
+| Added kp, ki for VAC control
+| raised limits for pcm comtrol mode commandeis to 5, VAC.
+
+Before loading new code or startup
+	Get Version numbers for current HMI and DPCB-7 code and FPGA.
+	| DPCB-7 17.08
+	| FPGA-
+	| HMI-
+	Set all parameters per Leo's list
+	| In particular set Kp_ac, Ki_ac to (5, 0.125)
+	| Settings changed to match data from Makani
+	| Need to set DC bus targets and limits.
+	Set KP and KI for VAC to match dc_voltage setpoints to start.
+	| Need to set AC Kp, Ki
+	Bring up in standard mode and check operation
+	Try pushing and pulling from dc bus
+Tests after loading new code
+	Bring up in standard mode and confirm operation
+	Push and pull power
+	Disconnect from 480.
+	With DC source curent limited try making independant 480 VAC.
+	Confirm 60 hz and rotation.
+
+
+Questions
+	DC precharge hardware, can we reuse the AC precharge circuit?
+	
